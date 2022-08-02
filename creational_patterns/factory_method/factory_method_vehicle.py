@@ -77,6 +77,32 @@ class Bike(Vehicle):
         return self._engine_type
 
 
+class Boat(Vehicle):
+    def __init__(self, brand: str, engine_type: str = "petrol",
+                 wheels_count: int = 0, seat_count: int = 2,
+                 vehicle_type: str = "water"):
+        self._brand = brand
+        self._wheels_count = wheels_count
+        self._seat_count = seat_count
+        self._vehicle_type = vehicle_type
+        self._engine_type = engine_type
+
+    def get_brand(self) -> str:
+        return self._brand
+
+    def get_wheels_count(self) -> int:
+        return self._wheels_count
+
+    def get_seats_count(self) -> int:
+        return self._seat_count
+
+    def get_vehicle_type(self) -> str:
+        return self._vehicle_type
+
+    def get_engine_type(self) -> str:
+        return self._engine_type
+
+
 class Airplane(Vehicle):
     def __init__(self, brand: str, engine_type: str, wheels_count: int = 6,
                  seat_count: int = 300, vehicle_type: str = "air"):
@@ -124,8 +150,13 @@ class AirbusAirplaneCreator(VehicleFactory):
         return Airplane("Airbus", "petrol")
 
 
+class BoeschBoatCreator(VehicleFactory):
+    def create(self) -> Boat:
+        return Boat("Boesch")
+
+
 if __name__ == '__main__':
-    vehicle_type: str = input("Select vehicle type [bike, car, airplane]: ")
+    vehicle_type: str = input("Select vehicle type [bike, car, airplane, boat]: ")
     vehicle_factory: Union[VehicleFactory, None] = None
     if vehicle_type.lower() == 'bike':
         vehicle_factory = RometBikeCreator()
@@ -133,6 +164,8 @@ if __name__ == '__main__':
         vehicle_factory = BMWCarCreator()
     elif vehicle_type.lower() == 'airplane':
         vehicle_factory = AirbusAirplaneCreator()
+    elif vehicle_type.lower() == 'boat':
+        vehicle_factory = BoeschBoatCreator()
 
     if vehicle_factory:
         vehicle: Vehicle = vehicle_factory.create()
