@@ -23,7 +23,7 @@ class Vehicle(ABC):
 
     @abstractmethod
     def get_engine_type(self) -> str:
-        # petrol, diesel, gas, electric
+        # petrol, diesel, gas, electric, no engine
         pass
 
 
@@ -53,12 +53,13 @@ class Car(Vehicle):
 
 
 class Bike(Vehicle):
-    def __init__(self, brand: str, wheels_count: int = 2,
+    def __init__(self, brand: str, engine_type: str = "no engine", wheels_count: int = 2,
                  seat_count: int = 1, vehicle_type: str = "land"):
         self._brand = brand
         self._wheels_count = wheels_count
         self._seat_count = seat_count
         self._vehicle_type = vehicle_type
+        self._engine_type = engine_type
 
     def get_brand(self) -> str:
         return self._brand
@@ -71,6 +72,9 @@ class Bike(Vehicle):
 
     def get_vehicle_type(self) -> str:
         return self._vehicle_type
+
+    def get_engine_type(self) -> str:
+        return self._engine_type
 
 
 class Airplane(Vehicle):
