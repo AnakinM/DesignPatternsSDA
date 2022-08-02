@@ -3,10 +3,8 @@ from typing import Dict, Union
 
 import requests
 
-from singleton_metaclass import SingletonMeta
 
-
-class JokeAPIConnector(metaclass=SingletonMeta):
+class JokeAPIConnector:
     def __init__(self) -> None:
         self._base_url: str = "https://v2.jokeapi.dev"
         self._headers: Dict[str, str] = {"Accept": "application/json"}
@@ -28,6 +26,24 @@ class JokeAPIConnector(metaclass=SingletonMeta):
         return json.loads(self._response.text)
 
 
+class JokesAdapter:
+    def __init__(self, response: Dict):
+        self._response = response
+
+    def is_error(self) -> bool:
+        pass
+
+    def get_category(self) -> str:
+        pass
+
+    def get_joke(self) -> str:
+        pass
+
+
 if __name__ == '__main__':
-    joke = JokeAPIConnector()
-    print(joke.get_response())
+    joke_response = JokeAPIConnector().get_response()
+    joke = JokesAdapter(joke_response)
+
+    print(joke.is_error())
+    print(joke.get_category())
+    print(joke.get_joke())
