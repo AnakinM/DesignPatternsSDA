@@ -51,6 +51,9 @@ class Car(Vehicle):
     def get_engine_type(self) -> str:
         return self._engine_type
 
+    def __str__(self):
+        return f"Car({self._brand}, {self._engine_type})"
+
 
 class Bike(Vehicle):
     def __init__(self, brand: str, engine_type: str = "no engine", wheels_count: int = 2,
