@@ -33,6 +33,17 @@ class InternetImage(RemoteImage):
         return "Internet Image"
 
 
+class AWSImage(RemoteImage):
+    def load_from_source(self):
+        pass
+
+    def is_loaded(self):
+        pass
+
+    def show(self) -> str:
+        return "AWS Image"
+
+
 class ImageProxy(Image):
     def __init__(self, remote_image: RemoteImage):
         self._remote_image = remote_image
@@ -46,6 +57,8 @@ class ImageProxy(Image):
 if __name__ == '__main__':
     disk_image_proxy = ImageProxy(DiskImage())
     internet_image_proxy = ImageProxy(InternetImage())
+    aws_image_proxy = ImageProxy(AWSImage())
 
     print(disk_image_proxy.show())
     print(internet_image_proxy.show())
+    print(aws_image_proxy.show())
