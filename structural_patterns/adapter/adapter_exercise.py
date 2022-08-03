@@ -31,17 +31,18 @@ class JokesAdapter:
         self._response = response
 
     def is_error(self) -> bool:
-        pass
+        return self._response.get("error")
 
     def get_category(self) -> str:
-        pass
+        return self._response.get("category")
 
     def get_joke(self) -> str:
-        pass
+        return self._response.get("joke")
 
 
 if __name__ == '__main__':
     joke_response = JokeAPIConnector().get_response()
+    print(joke_response)
     joke = JokesAdapter(joke_response)
 
     print(joke.is_error())
