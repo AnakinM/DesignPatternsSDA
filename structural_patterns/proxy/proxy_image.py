@@ -54,7 +54,7 @@ class ImageProxy(Image):
         return self._remote_image.show()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     disk_image_proxy = ImageProxy(DiskImage())
     internet_image_proxy = ImageProxy(InternetImage())
     aws_image_proxy = ImageProxy(AWSImage())

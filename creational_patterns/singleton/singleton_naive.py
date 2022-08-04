@@ -22,18 +22,18 @@ class NotSingleton:
         self.val = 1
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     a = Singleton.get_instance()
-    a.print_val() # 0
+    a.print_val()  # 0
     a.val = 10
-    a.print_val() # 10
+    a.print_val()  # 10
 
     b = Singleton.get_instance()
-    b.print_val() # 10
+    b.print_val()  # 10
     b.val = 11
 
-    b.print_val() # 11
-    a.print_val() # 11
+    b.print_val()  # 11
+    a.print_val()  # 11
 
     print(a)
     print(b)

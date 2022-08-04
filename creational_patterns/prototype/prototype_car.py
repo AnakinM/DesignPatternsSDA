@@ -3,8 +3,15 @@ import copy
 
 class Car:
     # engine_type: petrol, diesel, gas, electric
-    def __init__(self, wheels_count: int, doors_count: int, brand: str = "",
-                 model: str = "", color: str = "", engine_type: str = ""):
+    def __init__(
+        self,
+        wheels_count: int,
+        doors_count: int,
+        brand: str = "",
+        model: str = "",
+        color: str = "",
+        engine_type: str = "",
+    ):
         self._wheels_count = wheels_count
         self._doors_count = doors_count
         self._brand = brand
@@ -64,17 +71,20 @@ class Car:
         return copy.copy(self)
 
     def __str__(self):
-        return f"Car: {self.color} {self.brand} with " \
-               f"{self.engine_type} engine, {self.doors_count} doors and " \
-               f"{self.wheels_count} wheels."
+        return (
+            f"Car: {self.color} {self.brand} with "
+            f"{self.engine_type} engine, {self.doors_count} doors and "
+            f"{self.wheels_count} wheels."
+        )
 
 
 class CarManager:
     _base_car = Car(4, 5)
 
     @staticmethod
-    def create_car_with_color(brand: str, model: str, color: str,
-                              engine_type: str) -> Car:
+    def create_car_with_color(
+        brand: str, model: str, color: str, engine_type: str
+    ) -> Car:
         base_car_clone = CarManager._base_car.clone()
         base_car_clone.brand = brand
         base_car_clone.model = model
@@ -83,11 +93,9 @@ class CarManager:
         return base_car_clone
 
 
-if __name__ == '__main__':
-    car_1 = CarManager.create_car_with_color('Audi', 'A4', 'Pink', 'petrol')
-    car_2 = CarManager.create_car_with_color('Honda', 'Civic', 'Aquamarine',
-                                             'electric')
+if __name__ == "__main__":
+    car_1 = CarManager.create_car_with_color("Audi", "A4", "Pink", "petrol")
+    car_2 = CarManager.create_car_with_color("Honda", "Civic", "Aquamarine", "electric")
 
     print(car_1)
     print(car_2)
-

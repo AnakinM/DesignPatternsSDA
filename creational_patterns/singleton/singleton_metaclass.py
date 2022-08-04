@@ -1,5 +1,13 @@
-# Singleton metaclass implementation
+"""
+Singleton implementation as meta class
+"""
+
+
 class SingletonMeta(type):
+    """
+    SingletonMeta class
+    """
+
     __instances = {}
 
     def __call__(cls, *args, **kwargs):
@@ -9,12 +17,16 @@ class SingletonMeta(type):
         return cls.__instances[cls]
 
 
-class Singleton(metaclass=SingletonMeta):
+class Singleton(metaclass=SingletonMeta):  # pylint: disable=too-few-public-methods
+    """
+    Singleton class
+    """
+
     def __init__(self):
         self.val = 0
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     a = Singleton()
     print(a.val)
     a.val = 4

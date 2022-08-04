@@ -1,9 +1,7 @@
 from abc import ABC, abstractmethod
-from typing import Optional
 
 
 class Credentials(ABC):
-
     @abstractmethod
     def get_credentials(self, user_id: str) -> str:
         pass
@@ -25,7 +23,6 @@ class UsernameAndPasswordCredentials(Credentials):
 
 
 class AuthenticationHandler(ABC):
-
     @abstractmethod
     def authenticate(self, credentials: Credentials):
         pass
@@ -36,7 +33,6 @@ class AuthenticationHandler(ABC):
 
 
 class AWSAuthenticationHandler(AuthenticationHandler):
-
     def authenticate(self, credentials: Credentials):
         if self.supports(credentials):
             return self.authenticate_in_aws(credentials)
@@ -51,7 +47,6 @@ class AWSAuthenticationHandler(AuthenticationHandler):
 
 
 class BearerTokenAuthenticationHandler(AuthenticationHandler):
-
     def authenticate(self, credentials: Credentials):
         if self.supports(credentials):
             return self.is_token_valid(credentials)
@@ -66,7 +61,6 @@ class BearerTokenAuthenticationHandler(AuthenticationHandler):
 
 
 class UsernameAndPasswordAuthenticationHandler(AuthenticationHandler):
-
     def authenticate(self, credentials: Credentials):
         if self.supports(credentials):
             return self.is_password_valid(credentials)
@@ -81,7 +75,7 @@ class UsernameAndPasswordAuthenticationHandler(AuthenticationHandler):
 
 
 class ChainAuthenticationElement:
-    def __init__(self, authentication_handler: AuthenticationHandler, next = None):
+    def __init__(self, authentication_handler: AuthenticationHandler, next=None):
         self._authentication_handler = authentication_handler
         self._next = next
 
@@ -92,14 +86,18 @@ class ChainAuthenticationElement:
         return self._next and self._next.authenticate(credentials)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     authentication_handler_uap = UsernameAndPasswordAuthenticationHandler()
     authentication_handler_bearer = BearerTokenAuthenticationHandler()
     authentication_handler_aws = AWSAuthenticationHandler()
 
     last_element = ChainAuthenticationElement(authentication_handler_aws)
-    middle_element = ChainAuthenticationElement(authentication_handler_bearer, last_element)
-    first_element = ChainAuthenticationElement(authentication_handler_uap, middle_element)
+    middle_element = ChainAuthenticationElement(
+        authentication_handler_bearer, last_element
+    )
+    first_element = ChainAuthenticationElement(
+        authentication_handler_uap, middle_element
+    )
 
     first_element.authenticate(AWSSignature())
     first_element.authenticate(UsernameAndPasswordCredentials())

@@ -1,0 +1,15 @@
+1. Unikamy duplikatów
+2. Przechodzi testy
+3. Zrozumiały i czytelny i łatwy do czytania
+4. Powinien wyrażać sam siebie bez potrzeby komentowania
+5. Nnapisany w jak najprostszy sposób i uporządkowany
+
+I. Używamy odpowiednich nazw zmiennych
+x = AWSConnector() # to jest słabe
+aws_connector = AWSConnector() # to jest lepsze
+
+II. Trzymamy się konwecji nazewniczych danego języka (tworzenia nazw zmiennych, klas i metod)
+
+III. Ograniczamy się do niezbędnej ilości argumentów w metodach
+
+IV. Metody powinny wykonywać tylko jedną rzecz (i robić ją dobrze)

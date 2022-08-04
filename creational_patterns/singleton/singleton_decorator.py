@@ -1,5 +1,6 @@
 # Singleton decorator implementation
 
+
 def singleton(class_):
     __instances = {}
 
@@ -7,6 +8,7 @@ def singleton(class_):
         if class_ not in __instances:
             __instances[class_] = class_(*args, **kwargs)
         return __instances[class_]
+
     return get_instance
 
 
@@ -22,7 +24,7 @@ class SecondClass:
         self.val = 1
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     a = FirstClass()
     a.val = 11
     print(a.val)
@@ -37,4 +39,3 @@ if __name__ == '__main__':
     d = SecondClass()
     print(c)
     print(d)
-

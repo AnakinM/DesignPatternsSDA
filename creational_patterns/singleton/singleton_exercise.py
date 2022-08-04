@@ -9,7 +9,7 @@ class Cake:
         return self._name
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     cake_1 = Cake()
     cake_1.set_name("Jabłecznik")
     cake_2 = Cake()

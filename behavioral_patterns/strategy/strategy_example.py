@@ -3,47 +3,40 @@ from abc import ABC, abstractmethod
 
 
 class MatureLanguageFilterStrategy(ABC):
-
     @abstractmethod
     def modify(self, text: str, word: str) -> str:
         pass
 
 
 class RemoveWordStrategy(MatureLanguageFilterStrategy):
-
     def modify(self, text: str, word: str) -> str:
         return text.replace(word, "")
 
 
 class StarWordStrategy(MatureLanguageFilterStrategy):
-
     def modify(self, text: str, word: str) -> str:
-        return text.replace(word, '*' * len(word))
+        return text.replace(word, "*" * len(word))
 
 
 class MessWordStrategy(MatureLanguageFilterStrategy):
-
     def modify(self, text: str, word: str) -> str:
         letters = list(word)
         random.shuffle(letters)
-        return text.replace(word, ''.join(letters))
+        return text.replace(word, "".join(letters))
 
 
 class BackwardStrategy(MatureLanguageFilterStrategy):
-
     def modify(self, text: str, word: str) -> str:
         return text.replace(word, word[::-1])
 
 
 class CensoreMiddleWordStrategy(MatureLanguageFilterStrategy):
-
     def modify(self, text: str, word: str) -> str:
         censored_word = word[0] + "*" * (len(word) - 2) + word[-1]
         return text.replace(word, censored_word)
 
 
 class MatureLanguageFilterStrategyProvider:
-
     @staticmethod
     def get_strategy(strategy_type: str) -> MatureLanguageFilterStrategy:
         if strategy_type.lower() == "remove":

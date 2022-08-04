@@ -19,8 +19,12 @@ class Customer:
 
 
 class Client:
-    def __init__(self, full_name: str, contact_details: Dict[str, str],
-                 number_of_transactions: int):
+    def __init__(
+        self,
+        full_name: str,
+        contact_details: Dict[str, str],
+        number_of_transactions: int,
+    ):
         self._full_name = full_name
         self._contact_details = contact_details
         self._number_of_transactions = number_of_transactions
@@ -36,8 +40,12 @@ class Client:
 
 
 class ClientAdapter(Customer, Client):
-    def __init__(self, full_name: str, contact_details: Dict[str, str],
-                 number_of_transactions: int):
+    def __init__(
+        self,
+        full_name: str,
+        contact_details: Dict[str, str],
+        number_of_transactions: int,
+    ):
         super().__init__(full_name, contact_details, number_of_transactions)
 
     def get_first_name(self) -> str:
@@ -56,13 +64,21 @@ class ClientAdapter(Customer, Client):
         return self.get_number_of_transactions()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     customers = [
-        ClientAdapter("John Kowalsky", {"email": "johnkowalsky@example.com", "phone": "523456789"}, 10),
+        ClientAdapter(
+            "John Kowalsky",
+            {"email": "johnkowalsky@example.com", "phone": "523456789"},
+            10,
+        ),
         ClientAdapter("Joe Doe", {"email": "jo@example.com", "phone": "516457785"}, 12),
-        ClientAdapter("Eve Smith", {"email": "evesmi@example.com", "phone": "521251389"}, 1000),
+        ClientAdapter(
+            "Eve Smith", {"email": "evesmi@example.com", "phone": "521251389"}, 1000
+        ),
     ]
 
     for c in customers:
-        print(f"{c.get_first_name()} {c.get_last_name()} has email: {c.get_email()} and phone number: "
-              f"{c.get_phone_number()} and did {c.get_transaction_count()} transactions.")
+        print(
+            f"{c.get_first_name()} {c.get_last_name()} has email: {c.get_email()} and phone number: "
+            f"{c.get_phone_number()} and did {c.get_transaction_count()} transactions."
+        )

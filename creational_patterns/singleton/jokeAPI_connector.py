@@ -20,14 +20,14 @@ class JokeAPIConnector(metaclass=SingletonMeta):
         return {"Error": f"{status_code}: {message}"}
 
     def get_response(self, category: str = "Any") -> Union[Dict, None, str]:
-        self._response = requests.request("GET",
-                                          self._build_path("joke", category),
-                                          headers=self._headers)
+        self._response = requests.request(
+            "GET", self._build_path("joke", category), headers=self._headers
+        )
         if self._response.ok:
             return json.loads(self._response.text)
         return json.loads(self._response.text)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     joke = JokeAPIConnector()
     print(joke.get_response())

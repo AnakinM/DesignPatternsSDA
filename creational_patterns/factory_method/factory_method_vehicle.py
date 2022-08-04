@@ -3,7 +3,6 @@ from typing import Union
 
 
 class Vehicle(ABC):
-
     @abstractmethod
     def get_brand(self) -> str:
         pass
@@ -28,8 +27,14 @@ class Vehicle(ABC):
 
 
 class Car(Vehicle):
-    def __init__(self, brand: str, engine_type: str, wheels_count: int = 4,
-                 seat_count: int = 5, vehicle_type: str = "land"):
+    def __init__(
+        self,
+        brand: str,
+        engine_type: str,
+        wheels_count: int = 4,
+        seat_count: int = 5,
+        vehicle_type: str = "land",
+    ):
         self._brand = brand
         self._engine_type = engine_type
         self._wheels_count = wheels_count
@@ -56,8 +61,14 @@ class Car(Vehicle):
 
 
 class Bike(Vehicle):
-    def __init__(self, brand: str, engine_type: str = "no engine", wheels_count: int = 2,
-                 seat_count: int = 1, vehicle_type: str = "land"):
+    def __init__(
+        self,
+        brand: str,
+        engine_type: str = "no engine",
+        wheels_count: int = 2,
+        seat_count: int = 1,
+        vehicle_type: str = "land",
+    ):
         self._brand = brand
         self._wheels_count = wheels_count
         self._seat_count = seat_count
@@ -81,9 +92,14 @@ class Bike(Vehicle):
 
 
 class Boat(Vehicle):
-    def __init__(self, brand: str, engine_type: str = "petrol",
-                 wheels_count: int = 0, seat_count: int = 2,
-                 vehicle_type: str = "water"):
+    def __init__(
+        self,
+        brand: str,
+        engine_type: str = "petrol",
+        wheels_count: int = 0,
+        seat_count: int = 2,
+        vehicle_type: str = "water",
+    ):
         self._brand = brand
         self._wheels_count = wheels_count
         self._seat_count = seat_count
@@ -107,8 +123,14 @@ class Boat(Vehicle):
 
 
 class Airplane(Vehicle):
-    def __init__(self, brand: str, engine_type: str, wheels_count: int = 6,
-                 seat_count: int = 300, vehicle_type: str = "air"):
+    def __init__(
+        self,
+        brand: str,
+        engine_type: str,
+        wheels_count: int = 6,
+        seat_count: int = 300,
+        vehicle_type: str = "air",
+    ):
         self._brand = brand
         self._engine_type = engine_type
         self._wheels_count = wheels_count
@@ -132,7 +154,6 @@ class Airplane(Vehicle):
 
 
 class VehicleFactory(ABC):
-
     @abstractmethod
     def create(self) -> Vehicle:
         pass
@@ -158,16 +179,16 @@ class BoeschBoatCreator(VehicleFactory):
         return Boat("Boesch")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     vehicle_type: str = input("Select vehicle type [bike, car, airplane, boat]: ")
     vehicle_factory: Union[VehicleFactory, None] = None
-    if vehicle_type.lower() == 'bike':
+    if vehicle_type.lower() == "bike":
         vehicle_factory = RometBikeCreator()
-    elif vehicle_type.lower() == 'car':
+    elif vehicle_type.lower() == "car":
         vehicle_factory = BMWCarCreator()
-    elif vehicle_type.lower() == 'airplane':
+    elif vehicle_type.lower() == "airplane":
         vehicle_factory = AirbusAirplaneCreator()
-    elif vehicle_type.lower() == 'boat':
+    elif vehicle_type.lower() == "boat":
         vehicle_factory = BoeschBoatCreator()
 
     if vehicle_factory:

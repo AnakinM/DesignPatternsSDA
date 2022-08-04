@@ -1,5 +1,6 @@
 # Nested class implementation
 
+
 class Singleton:
     class __Singleton:
         def __init__(self):
@@ -13,7 +14,7 @@ class Singleton:
         return Singleton.__instance
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     x = Singleton()
     print(x.val)
     x.val = 3
@@ -24,4 +25,3 @@ if __name__ == '__main__':
 
     print(x)
     print(y)
-
